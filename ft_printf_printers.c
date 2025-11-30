@@ -13,7 +13,7 @@ int ft_putstr(const char *s)
 	count = 0;
 
 	if(!s)
-		return (ft_putstr("(null)"));
+		return (ft_putstr("(nil)"));
 	while(s[count])
 		write(1, &s[count++], 1);
 	return (count);
@@ -25,7 +25,7 @@ int ft_putnbr(int num)
 
 	compt = 0;
 	if (num == -2147483648)
-		return (ft_putstr("-2147483648‎"));
+		return (ft_putstr("-2147483648"));
 	if (num < 0)
 	{
 		compt += ft_putchar('-');
@@ -65,6 +65,8 @@ int ft_puthex(unsigned long num)
 	hex = "0123456789abcdef";
 	i = 0;
 	count = 0;
+	if(!num)
+		return (ft_putstr("(nil)"));
 	if (num == 0)
 		return (write(1, "0x0", 3));
 	count += write(1, "0x", 2);
@@ -88,7 +90,7 @@ int	ft_put_uns_nbr(unsigned int num)
 		compt += ft_put_uns_nbr(num / 10);
 	if (compt < 0)
 		return (-1);
-	compt += ft_put_uns_nbr((num % 10) + '0');
+	compt += ft_putchar((num % 10) + '0');
 	return (compt);
 }
 
