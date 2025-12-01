@@ -10,7 +10,13 @@ static int convert(va_list args, const char s)
 	if (s == 'c')
 		print += ft_putchar(va_arg(args, int));
 	else if (s == 's')
-		print += ft_putstr(va_arg(args, char *));
+	{
+		char *str = va_arg(args, char *);
+		if (str == NULL)
+			print += ft_putstr("(null)");
+		else
+			print += ft_putstr(str);
+	}
 	else if (s == 'p')
 		print += ft_puthex((unsigned long)va_arg(args, void *));
 	else if (s == 'd' || s == 'i')
