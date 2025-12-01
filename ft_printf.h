@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abouchti <abouchti@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/01 21:01:46 by abouchti          #+#    #+#             */
+/*   Updated: 2025/12/01 21:19:53 by abouchti         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
@@ -14,6 +26,5 @@ int	ft_puthex(unsigned long num);
 int	ft_put_uns_nbr(unsigned int num);
 int	ft_print_low_hex(unsigned int num);
 int	ft_print_up_hex(unsigned int num);
-
 
 #endif

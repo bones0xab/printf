@@ -1,22 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abouchti <abouchti@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/01 21:01:53 by abouchti          #+#    #+#             */
+/*   Updated: 2025/12/01 21:20:16 by abouchti         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-
-static int convert(va_list args, const char s)
+static int	convert(va_list args, const char s)
 {
-	int print;
+	int		print;
 
 	print = 0;
-
 	if (s == 'c')
 		print += ft_putchar(va_arg(args, int));
 	else if (s == 's')
-	{
-		char *str = va_arg(args, char *);
-		if (str == NULL)
-			print += ft_putstr("(null)");
-		else
-			print += ft_putstr(str);
-	}
+		print += ft_putstr(va_arg(args, char *));
 	else if (s == 'p')
 		print += ft_puthex((unsigned long)va_arg(args, void *));
 	else if (s == 'd' || s == 'i')
@@ -30,15 +34,16 @@ static int convert(va_list args, const char s)
 	else if (s == '%')
 		print += write(1, "%", 1);
 	return (print);
-
 }
 
 int	ft_printf(const char *str, ...)
 {
-	va_list args;
-	int i = 0;
-	int count = 0;
+	va_list	args;
+	int		i;
+	int		count;
 
+	i = 0;
+	count = 0;
 	va_start(args, str);
 	if (write(1, "", 0) == -1)
 		return (-1);
@@ -47,10 +52,7 @@ int	ft_printf(const char *str, ...)
 		if (str[i] == '%')
 		{
 			if (str[i + 1])
-			{
-				count += convert(args, str[i +1]);
-				i++;
-			}
+				count += convert(args, str[++i]);
 		}
 		else
 			count += ft_putchar(str[i]);
